@@ -1,13 +1,18 @@
 package org.launchcode.Ch15Lecture.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Dinosaur {
 
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
 
     @NotBlank
     @Size(min=3)
@@ -19,13 +24,9 @@ public class Dinosaur {
     @NotNull
     private String aquatic;
 
-    public Dinosaur() {
-        id = nextId;
-        nextId++;
-    }
+    public Dinosaur() { }
 
     public Dinosaur(String species, String diet, String aquatic) {
-        this();
         this.species = species;
         this.diet = diet;
         this.aquatic = aquatic;
