@@ -28,7 +28,11 @@ public class DinoController {
     }
 
     @GetMapping("add")
-    public String displayAddDinoForm() {
+    public String displayAddDinoForm(Model model) {
+        // Now that we are using th:field to bind our form inputs to fields from the
+        // Dinosaur class, we need to pass in an EMPTY Dinosaur object to this form.
+        // Otherwise, we get a whitelabel error
+        model.addAttribute("dinosaur", new Dinosaur());
         return "dino/add";
     }
 
@@ -43,7 +47,7 @@ public class DinoController {
         // check that the data is passing using this Errors object before adding the dino to the
         // allDinos list
         if(errors.hasErrors()) {
-            // If errors.hasErros is true, let's re-render the dino/add instead of
+            // If errors.hasErrors is true, let's re-render the dino/add instead of
             // continuing on and adding the dino into the allDinos list and rendering the
             // dino/index page
             // Before we re-render out the dino/add view, let's pass in an error message to the view
@@ -52,19 +56,11 @@ public class DinoController {
             return "dino/add";
         }
 
-
         // What should we do with this Dinosaur object?
         // Let's add it to the allDinos list!
         DinoData.addDino(newDinoObj);
 
-        // Now that we have processed our post request and
-        // stored our Dinosaur object in our allDinos list,
-        // what page should we render?
-        // Anytime we render dino/index, we need to pass in the allDinos list
-        // so that our Thymeleaf can render all of dinos in the table
-        model.addAttribute("allDinos", DinoData.getAllDinos());
-
-        return "dino/index";
+        return "redirect:";
     }
 
 }

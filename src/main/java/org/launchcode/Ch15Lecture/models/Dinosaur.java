@@ -47,7 +47,7 @@ public class Dinosaur {
         this.diet = diet;
     }
 
-    public String isAquatic() {
+    public String getAquatic() {
         return aquatic;
     }
 

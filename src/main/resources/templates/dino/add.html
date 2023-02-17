@@ -9,20 +9,20 @@
 <!--species, diet, aquatic-->
     <form method="POST">
         Species:
-        <input type="text" name="species" />
+        <input type="text" th:field="${dinosaur.species}" />
 <!--    We only want to render this p tag IF AND ONLY IF there is an actual
         error message to display -->
         <span th:text="${errorMsg}" th:if="${errorMsg != null}" style="color:red;"></span>
         <br>
         Diet:
-        <select name="diet">
+        <select th:field="${dinosaur.diet}">
             <option value="Herbivore">Herbivore</option>
             <option value="Carnivore">Carnivore</option>
             <option value="Omnivore">Omnivore</option>
         </select>
         <br>
         Is the dino aquatic?
-        <select name="aquatic">
+        <select th:field="${dinosaur.aquatic}">
             <option value="no">No</option>
             <option value="yes">Yes</option>
         </select>
