@@ -1,7 +1,9 @@
 package org.launchcode.Ch15Lecture.controllers;
 
 import org.launchcode.Ch15Lecture.data.DinoData;
+import org.launchcode.Ch15Lecture.data.DinosaurRepository;
 import org.launchcode.Ch15Lecture.models.Dinosaur;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,13 +18,20 @@ import javax.validation.Valid;
 @RequestMapping("dino")
 public class DinoController {
 
+    // Let's create a DinosaurRepository field so that we can
+    // access all of the CRUD methods we need to save/read
+    // dinosaur data from the db
+    @Autowired
+    private DinosaurRepository dinosaurRepository;
+
     // Here is a method that handles get requests at
     // the /dino path
     @GetMapping
     public String dino(Model model) {
         // let's pass in a list of all of the dinos in our
         // data layer
-        model.addAttribute("allDinos", DinoData.getAllDinos());
+//      model.addAttribute("allDinos", DinoData.getAllDinos());
+        model.addAttribute("allDinos", dinosaurRepository.findAll());
 
         return "dino/index";
     }
@@ -58,7 +67,8 @@ public class DinoController {
 
         // What should we do with this Dinosaur object?
         // Let's add it to the allDinos list!
-        DinoData.addDino(newDinoObj);
+//      DinoData.addDino(newDinoObj);
+        dinosaurRepository.save(newDinoObj);
 
         return "redirect:";
     }
