@@ -58,4 +58,12 @@ public class DinoEgg {
     public int getId() {
         return id;
     }
+
+    public Dinosaur getDinosaur() {
+        return dinosaur;
+    }
+
+    public void setDinosaur(Dinosaur dinosaur) {
+        this.dinosaur = dinosaur;
+    }
 }
