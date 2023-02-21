@@ -7,11 +7,7 @@ import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Entity
-public class DinoEgg {
-
-    @Id
-    @GeneratedValue
-    private int id;
+public class DinoEgg extends AbstractEntity {
 
     private int sizeInches;
     private int weightKg;
@@ -53,10 +49,6 @@ public class DinoEgg {
 
     public void setDateLaid(String dateLaid) {
         this.dateLaid = dateLaid;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public Dinosaur getDinosaur() {
