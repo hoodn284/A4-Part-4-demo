@@ -27,6 +27,14 @@
             <option value="yes">Yes</option>
         </select>
         <br>
+        Color(s):
+        <th:block th:each="color : ${colors}">
+            <input type="checkbox" name="colors" th:value="${color.id}">
+            <label th:text="${color.name}"></label>
+        </th:block>
+        <br>
+        <a th:href="@{'/color/add'}">Add Colors</a>
+        <br>
         <button>Add Dino! 🐱‍🐉</button>
     </form>
 
