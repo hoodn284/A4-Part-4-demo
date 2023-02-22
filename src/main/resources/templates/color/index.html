@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>All Colors</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    <tr th:each="color : ${colors}">
+        <td th:text="${color.id}"></td>
+        <td th:text="${color.name}"></td>
+    </tr>
+</table>
+
+<form method="get" action="/color/add">
+    <input type="submit" value="Add Colors! 🌈"></input>
+</form>
+</body>
+</html>
