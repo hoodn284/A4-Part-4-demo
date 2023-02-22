@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+
+    <h1 th:text="Details for ${dinosaur.species}"></h1>
+
+    <p th:text="${'ID: ' + dinosaur.id}"></p>
+    <p> Color(s):
+    <ul>
+        <li th:each="color : ${dinosaur.colors}">
+            <a th:href="@{'/color/view/' + ${color.id}}" th:text="${color.name}"></a>
+        </li>
+    </ul>
+    </p>
+
+</body>
+</html>

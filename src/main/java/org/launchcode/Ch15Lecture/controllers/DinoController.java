@@ -2,17 +2,16 @@ package org.launchcode.Ch15Lecture.controllers;
 
 import org.launchcode.Ch15Lecture.data.DinoData;
 import org.launchcode.Ch15Lecture.data.DinosaurRepository;
+import org.launchcode.Ch15Lecture.models.Color;
 import org.launchcode.Ch15Lecture.models.Dinosaur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("dino")
@@ -71,6 +70,20 @@ public class DinoController {
         dinosaurRepository.save(newDinoObj);
 
         return "redirect:";
+    }
+
+    @GetMapping("view/{dinoId}")
+    public String displayViewDino(Model model, @PathVariable int dinoId) {
+
+        Optional optDino = dinosaurRepository.findById(dinoId);
+        if (optDino.isPresent()) {
+            Dinosaur dinosaur = (Dinosaur) optDino.get();
+            model.addAttribute("dinosaur", dinosaur);
+            return "dino/view";
+        } else {
+            return "redirect:../";
+        }
+
     }
 
 }
