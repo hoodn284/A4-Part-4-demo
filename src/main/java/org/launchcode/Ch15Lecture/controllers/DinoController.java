@@ -1,5 +1,6 @@
 package org.launchcode.Ch15Lecture.controllers;
 
+import org.launchcode.Ch15Lecture.data.ColorRepository;
 import org.launchcode.Ch15Lecture.data.DinoData;
 import org.launchcode.Ch15Lecture.data.DinosaurRepository;
 import org.launchcode.Ch15Lecture.models.Color;
@@ -22,7 +23,8 @@ public class DinoController {
     // dinosaur data from the db
     @Autowired
     private DinosaurRepository dinosaurRepository;
-
+    @Autowired
+    private ColorRepository colorRepository;
     // Here is a method that handles get requests at
     // the /dino path
     @GetMapping
@@ -41,6 +43,7 @@ public class DinoController {
         // Dinosaur class, we need to pass in an EMPTY Dinosaur object to this form.
         // Otherwise, we get a whitelabel error
         model.addAttribute("dinosaur", new Dinosaur());
+        model.addAttribute("colors", colorRepository.findAll());
         return "dino/add";
     }
 

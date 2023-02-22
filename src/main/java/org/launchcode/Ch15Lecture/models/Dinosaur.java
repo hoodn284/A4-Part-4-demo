@@ -1,9 +1,6 @@
 package org.launchcode.Ch15Lecture.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,6 +26,10 @@ public class Dinosaur extends AbstractEntity {
     // and DinoEggs
     @OneToMany(mappedBy = "dinosaur")
     private final List<DinoEgg> dinoEggs = new ArrayList<>();
+    //
+//had to use a mapped by in colors to map it here and make the relationship
+    @ManyToMany
+    private List<Color> colors = new ArrayList<>();
 
     public Dinosaur() { }
 
@@ -60,5 +61,17 @@ public class Dinosaur extends AbstractEntity {
 
     public void setAquatic(String aquatic) {
         this.aquatic = aquatic;
+    }
+
+    public List<DinoEgg> getDinoEggs() {
+        return dinoEggs;
+    }
+
+    public List<Color> getColors() {
+        return colors;
+    }
+
+    public void setColors(List<Color> colors) {
+        this.colors = colors;
     }
 }
